@@ -25,6 +25,7 @@ binary: build
 
 	dh_strip
 	dh_shlibdeps
+	dh_numpy
 	dh_compress
 	dh_gencontrol
 	dh_fixperms

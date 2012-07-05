@@ -1,6 +1,7 @@
 cantera (2.0.0-1) precise; urgency=low
 
   * New major upstream version
+  * Fixed lintian warning regarding numpy-abi
 
  -- Raymond Speth <speth@mit.edu>  Thu, 05 Jul 2012 15:25:09 -0400
 

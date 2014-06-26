@@ -1,3 +1,9 @@
+cantera (2.1.2~b1-1+trusty0) trusty; urgency=low
+
+  * Jump to Trusty
+
+ -- Raymond Speth <speth@mit.edu>  Thu, 26 Jun 2014 15:02:14 -0400
+
 cantera (2.1.2~b1-1) saucy; urgency=low
 
   * New major upstream version

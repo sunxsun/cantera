@@ -1,3 +1,9 @@
+cantera (2.1.2-1+utopic0) utopic; urgency=low
+
+  * Jump to Utopic
+
+ -- Raymond Speth <speth@mit.edu>  Fri, 12 Dec 2014 14:10:06 -0500
+
 cantera (2.1.2-1+trusty0) trusty; urgency=low
 
   * Update to latest maintenance release

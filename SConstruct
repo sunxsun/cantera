@@ -622,7 +622,7 @@ config_options = [
         name recognized by the 'dot' program. On linux systems, this
         should be lowercase 'helvetica'.""",
      'Helvetica'),
-    ('cantera_version', '', '2.1.1')
+    ('cantera_version', '', '2.1.2')
 ]
 
 opts.AddVariables(*config_options)
@@ -864,6 +864,7 @@ if env['HAS_SUNDIALS'] and env['use_sundials'] != 'n':
 
 env = conf.Finish()
 
+env['python_cmd_esc'] = quoted(env['python_cmd'])
 
 # Python 2 Package Settings
 cython_min_version = LooseVersion('0.17')
@@ -929,7 +930,12 @@ if env['python_package'] in ('full','default','new'):
     # See http://pypi.python.org/pypi/3to2
     if env['python_package'] == 'new':
         try:
-            ret = getCommandOutput('3to2','-l')
+            if env['OS'] == 'Windows':
+                python_dir = os.path.dirname(which(env['python_cmd']))
+                threetotwo_cmd = pjoin(python_dir, 'Scripts', '3to2')
+                ret = getCommandOutput(env['python_cmd'], threetotwo_cmd, '-l')
+            else:
+                ret = getCommandOutput('3to2', '-l')
         except OSError:
             ret = ''
         if 'print' in ret:
@@ -1248,7 +1254,7 @@ for cti in mglob(env, 'data/inputs', 'cti'):
     outName = os.path.splitext(cti.name)[0] + '.xml'
     convertedInputFiles.add(outName)
     build(env.Command('build/data/%s' % outName, cti.path,
-                      '$python_cmd interfaces/python/ctml_writer.py $SOURCE $TARGET'))
+                      '$python_cmd_esc interfaces/python/ctml_writer.py $SOURCE $TARGET'))
 
 
 # Copy input files which are not present as cti:

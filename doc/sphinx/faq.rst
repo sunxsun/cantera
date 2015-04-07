@@ -10,13 +10,19 @@ Installation
     Download the MSI installer for Cantera and the corresponding Python module
     from `SourceForge <https://sourceforge.net/projects/cantera/files/cantera/>`_.
     Choose between x86 and x64 based on the versions of Python and/or Matlab
-    you want to work with.
+    you want to work with. See :ref:`Windows Installation <sec-install-win>`
+    for details.
 
 **How do I install Cantera on Linux?**
 
-    Download the source code (e.g. ``cantera-2.1.1.tar.gz``) from `SourceForge
+    Download the source code (e.g. ``cantera-2.1.2.tar.gz``) from `SourceForge
     <https://sourceforge.net/projects/cantera/files/cantera/>`_ and follow the
     instructions in the :ref:`sec-compiling`.
+
+**How do I install Cantera on Mac OS X?**
+
+    Cantera can be installed using Homebrew. See :ref:`Mac OS X Installation
+    <sec-install-osx>` for details.
 
 General
 -------
@@ -42,6 +48,29 @@ General
     subdirectory of the Cantera Python module installation directory, or in
     the ``interfaces/cython/cantera/examples`` subdirectory of the Cantera
     source directory.
+
+**How should I cite Cantera?**
+
+    The recommended citation for Cantera is as follows:
+
+    David G. Goodwin, Harry K. Moffat, and Raymond L. Speth. *Cantera: An object-
+    oriented software toolkit for chemical kinetics, thermodynamics, and
+    transport processes*. http://www.cantera.org, 2014. Version 2.1.2.
+
+    The following BibTeX entry may also be used::
+
+        @Misc{Cantera,
+           author = "David G. Goodwin and Harry K. Moffat and Raymond L. Speth",
+           title = "Cantera: An Object-oriented Software Toolkit for Chemical
+                    Kinetics, Thermodynamics, and Transport Processes",
+           year = 2014,
+           note = "Version 2.1.2",
+           howpublished = "\url{http://www.cantera.org}"
+        }
+
+    If you are using a different version of Cantera, update the ``version`` and
+    ``year`` fields accordingly.
+
 
 Support and Bug Reporting
 -------------------------

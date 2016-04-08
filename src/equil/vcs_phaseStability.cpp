@@ -526,6 +526,9 @@ double VCS_SOLVE::vcs_phaseStabilityTest(const size_t iph)
                     sum_Xcomp += X_est[k];
                 }
             }
+            if (sum_Xcomp <= 0) {
+                X_est[0] = 1;
+            }
 
             // Feed the newly formed estimate of the mole fractions back into the
             // ThermoPhase object

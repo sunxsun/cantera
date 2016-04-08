@@ -369,13 +369,13 @@ void vcs_VolPhase::setMoleFractionsState(const double totalMoles,
         // is set to a normal settting.
         if (vcsStateStatus != VCS_STATECALC_TMP) {
             throw CanteraError("vcs_VolPhase::setMolesFractionsState",
-                               "inappropriate usage");
+                               "vcsStateStatus != VCS_STATECALC_TMP");
         }
         m_UpToDate = false;
         m_vcsStateStatus = VCS_STATECALC_TMP;
         if (m_existence == VCS_PHASE_EXIST_ZEROEDPHASE) {
             throw CanteraError("vcs_VolPhase::setMolesFractionsState",
-                               "inappropriate usage");
+                               "m_existence == VCS_PHASE_EXIST_ZEROEDPHASE");
         }
         m_existence = VCS_PHASE_EXIST_YES;
     } else {
@@ -400,7 +400,7 @@ void vcs_VolPhase::setMoleFractionsState(const double totalMoles,
     }
     if (sum == 0.0) {
         throw CanteraError("vcs_VolPhase::setMolesFractionsState",
-                           "inappropriate usage");
+                           "inappropriate usage: sum == 0.0");
     }
     if (sum  != fractotal) {
         for (size_t k = 0; k < m_numSpecies; k++) {

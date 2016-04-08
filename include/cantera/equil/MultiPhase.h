@@ -365,6 +365,8 @@ public:
                      double rtol=1e-9, int max_steps=50000, int max_iter=100,
                      int estimate_equil=0, int log_level=0);
 
+    bool checkStability(int iPhase, int log_level=0);
+
     /// Set the temperature [K].
     /*!
      * @param T   value of the temperature (Kelvin)

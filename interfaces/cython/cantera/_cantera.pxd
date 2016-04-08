@@ -428,6 +428,7 @@ cdef extern from "cantera/equil/MultiPhase.h" namespace "Cantera":
         void updatePhases() except +
 
         void equilibrate(string, string, double, int, int, int, int) except +
+        cbool checkStability(int, int) except +
 
         size_t nSpecies()
         size_t nElements()

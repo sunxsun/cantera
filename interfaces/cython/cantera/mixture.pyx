@@ -318,3 +318,6 @@ cdef class Mixture:
         """
         self.mix.equilibrate(stringify(XY.upper()), stringify(solver), rtol,
                              max_steps, max_iter, estimate_equil, log_level)
+
+    def check_stability(self, phase, log_level=0):
+        return self.mix.checkStability(self.phase_index(phase), log_level)

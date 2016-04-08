@@ -299,6 +299,7 @@ public:
     // Friend functions
     friend int vcs_Cantera_to_vprob(MultiPhase* mphase, VCS_PROB* vprob);
     friend int vcs_Cantera_update_vprob(MultiPhase* mphase, VCS_PROB* vprob);
+    friend class MultiPhase;
 
 protected:
     //! Vector that takes into account of the current sorting of the species

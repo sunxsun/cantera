@@ -735,6 +735,14 @@ void MultiPhase::equilibrate(const std::string& XY, const std::string& solver,
     }
 }
 
+bool MultiPhase::checkStability(int iPhase, int print_lvl)
+{
+    vcs_MultiPhaseEquil eqsolve(this, print_lvl);
+    vcs_Cantera_update_vprob(this, &eqsolve.m_vprob);
+    double funcStab;
+    return eqsolve.determine_PhaseStability(iPhase, funcStab, print_lvl);
+}
+
 void MultiPhase::setTemperature(const doublereal T)
 {
     if (!m_init) {

@@ -130,6 +130,11 @@ class TestKOH_Equil(utilities.CanteraTest):
             self.mix.equilibrate('TP')
 
             data[i,1:] = self.mix.species_moles
+            for n in range(self.mix.n_phases):
+                if self.mix.phase_moles(n) > 0:
+                    self.assertTrue(self.mix.check_stability(n))
+                else:
+                    self.assertFalse(self.mix.check_stability(n))
 
         self.compare(data, '../data/koh-equil-TP.csv')
 

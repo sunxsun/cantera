@@ -2,9 +2,14 @@ import numpy as np
 import sys
 import os
 import warnings
+import cantera as ct
 
 _ver = sys.version_info[:2]
 python_version = str(_ver[0])
+module_root = os.path.split(ct.__file__)[0]
+
+def test_data(filename):
+    return os.path.join(os.path.split(ct.__file__)[0], 'test', 'data', filename)
 
 if  _ver < (2,7) or (3,0) <= _ver < (3,2):
     # unittest2 is a backport of the new features added to the unittest

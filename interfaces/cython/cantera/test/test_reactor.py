@@ -918,7 +918,7 @@ class TestSurfaceKinetics(utilities.CanteraTest):
         self.assertArrayNear(surf1.coverages, C)
         data = []
         test_file = 'test_coverages_regression1.csv'
-        reference_file = '../data/WallKinetics-coverages-regression1.csv'
+        reference_file = utilities.test_data('WallKinetics-coverages-regression1.csv')
         data = []
         for t in np.linspace(1e-6, 1e-3):
             self.net.advance(t)
@@ -943,7 +943,7 @@ class TestSurfaceKinetics(utilities.CanteraTest):
         self.assertArrayNear(surf.coverages, C)
         data = []
         test_file = 'test_coverages_regression2.csv'
-        reference_file = '../data/WallKinetics-coverages-regression2.csv'
+        reference_file = utilities.test_data('WallKinetics-coverages-regression2.csv')
         data = []
         for t in np.linspace(1e-6, 1e-3):
             self.net.advance(t)
@@ -1281,7 +1281,7 @@ class CombustorTestImplementation(object):
     consistent output.
     """
 
-    referenceFile = '../data/CombustorTest-integrateWithAdvance.csv'
+    referenceFile = utilities.test_data('CombustorTest-integrateWithAdvance.csv')
     def setUp(self):
         self.gas = ct.Solution('h2o2.xml')
 
@@ -1369,7 +1369,7 @@ class WallTestImplementation(object):
     consistent output.
     """
 
-    referenceFile = '../data/WallTest-integrateWithAdvance.csv'
+    referenceFile = utilities.test_data('WallTest-integrateWithAdvance.csv')
     def setUp(self):
         # reservoir to represent the environment
         self.gas0 = ct.Solution('air.xml')

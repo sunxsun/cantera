@@ -793,22 +793,22 @@ class ImportTest(utilities.CanteraTest):
         self.assertEqual(gas.n_elements, nElem)
 
     def test_import_phase_cti(self):
-        gas1 = ct.Solution('../data/air-no-reactions.cti', 'air')
+        gas1 = ct.Solution('air-no-reactions.cti', 'air')
         self.check(gas1, 'air', 300, 101325, 8, 3)
 
-        gas2 = ct.Solution('../data/air-no-reactions.cti', 'notair')
+        gas2 = ct.Solution('air-no-reactions.cti', 'notair')
         self.check(gas2, 'notair', 900, 5*101325, 7, 2)
 
     def test_import_phase_cti2(self):
         # This should import the first phase, i.e. 'air'
-        gas = ct.Solution('../data/air-no-reactions.cti')
+        gas = ct.Solution('air-no-reactions.cti')
         self.check(gas, 'air', 300, 101325, 8, 3)
 
     def test_import_phase_xml(self):
-        gas1 = ct.Solution('../data/air-no-reactions.xml', 'air')
+        gas1 = ct.Solution('air-no-reactions.xml', 'air')
         self.check(gas1, 'air', 300, 101325, 8, 3)
 
-        gas2 = ct.Solution('../data/air-no-reactions.xml', 'notair')
+        gas2 = ct.Solution('air-no-reactions.xml', 'notair')
         self.check(gas2, 'notair', 900, 5*101325, 7, 2)
 
     def test_import_phase_cti_text(self):
@@ -859,7 +859,7 @@ ideal_gas(name='spam', elements='O H',
 
     def test_checkReactionBalance(self):
         with self.assertRaises(Exception):
-            ct.Solution('../data/h2o2_unbalancedReaction.xml')
+            ct.Solution('h2o2_unbalancedReaction.xml')
 
 
 class TestSpecies(utilities.CanteraTest):
@@ -930,7 +930,7 @@ class TestSpecies(utilities.CanteraTest):
 
     def test_fromXml(self):
         import xml.etree.ElementTree as ET
-        root = ET.parse('../../build/data/h2o2.xml').getroot()
+        root = ET.parse(utilities.test_data('../../data/h2o2.xml')).getroot()
         h2_node = root.find('.//species[@name="H2"]')
         h2_string = ET.tostring(h2_node)
 
@@ -952,14 +952,14 @@ class TestSpecies(utilities.CanteraTest):
                          set(self.gas.species_names))
 
     def test_listFromCti(self):
-        with open('../../build/data/h2o2.cti') as f:
+        with open(utilities.test_data('../../data/h2o2.cti')) as f:
             S = ct.Species.listFromCti(f.read())
 
         self.assertEqual({sp.name for sp in S},
                          set(self.gas.species_names))
 
     def test_listFromXml(self):
-        with open('../../build/data/h2o2.xml') as f:
+        with open(utilities.test_data('../../data/h2o2.xml')) as f:
             S = ct.Species.listFromXml(f.read())
 
         self.assertEqual({sp.name for sp in S},

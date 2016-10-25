@@ -607,7 +607,7 @@ class TestSofcKinetics(utilities.CanteraTest):
                              cathode_bulk.electric_potential -
                              anode_bulk.electric_potential])
 
-        self.compare(data, '../data/sofc-test.csv')
+        self.compare(data, utilities.test_data('sofc-test.csv'))
 
 
 class TestDuplicateReactions(utilities.CanteraTest):
@@ -673,7 +673,7 @@ class TestReaction(utilities.CanteraTest):
 
     def test_fromXml(self):
         import xml.etree.ElementTree as ET
-        root = ET.parse('../../build/data/h2o2.xml').getroot()
+        root = ET.parse(utilities.test_data('../../data/h2o2.xml')).getroot()
         rxn_node = root.find('.//reaction[@id="0001"]')
         r = ct.Reaction.fromXml(ET.tostring(rxn_node))
 
@@ -690,14 +690,14 @@ class TestReaction(utilities.CanteraTest):
         self.assertEqual(eq1, eq2)
 
     def test_listFromCti(self):
-        with open('../../build/data/h2o2.cti') as f:
+        with open(utilities.test_data('../../data/h2o2.cti')) as f:
             R = ct.Reaction.listFromCti(f.read())
         eq1 = [r.equation for r in R]
         eq2 = [r.equation for r in self.gas.reactions()]
         self.assertEqual(eq1, eq2)
 
     def test_listFromXml(self):
-        with open('../../build/data/h2o2.xml') as f:
+        with open(utilities.test_data('../../data/h2o2.xml')) as f:
             R = ct.Reaction.listFromCti(f.read())
         eq1 = [r.equation for r in R]
         eq2 = [r.equation for r in self.gas.reactions()]
@@ -1004,8 +1004,8 @@ class TestReaction(utilities.CanteraTest):
         gas1.TP = surf1.TP
 
         # Motz & Wise correction on for some reactions
-        gas2 = ct.Solution('../data/ptcombust-motzwise.cti', 'gas')
-        surf2 = ct.Interface('../data/ptcombust-motzwise.cti', 'Pt_surf', [gas2])
+        gas2 = ct.Solution('ptcombust-motzwise.cti', 'gas')
+        surf2 = ct.Interface('ptcombust-motzwise.cti', 'Pt_surf', [gas2])
         surf2.TPY = surf1.TPY
 
         k1 = surf1.forward_rate_constants

@@ -158,7 +158,7 @@ class TestKOH_Equil(utilities.CanteraTest):
 
             data[i,1:] = self.mix.species_moles
 
-        self.compare(data, '../data/koh-equil-TP.csv')
+        self.compare(data, utilities.test_data('koh-equil-TP.csv'))
 
     def test_equil_HP(self):
         temperatures = range(350, 5000, 300)
@@ -181,7 +181,7 @@ class TestKOH_Equil(utilities.CanteraTest):
             data[i,1] = self.mix.T # equilibrated temperature
             data[i,2:] = self.mix.species_moles
 
-        self.compare(data, '../data/koh-equil-HP.csv')
+        self.compare(data, utilities.test_data('koh-equil-HP.csv'))
 
 
 class TestEquil_GasCarbon(utilities.CanteraTest):
@@ -212,7 +212,7 @@ class TestEquil_GasCarbon(utilities.CanteraTest):
             data[i,:2] = (phi[i], mix.T)
             data[i,2:] = mix.species_moles
 
-        self.compare(data, '../data/gas-carbon-equil.csv')
+        self.compare(data, utilities.test_data('gas-carbon-equil.csv'))
 
     def test_gibbs(self):
         self.solve('gibbs')

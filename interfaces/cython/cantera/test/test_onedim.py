@@ -509,7 +509,7 @@ class TestDiffusionFlame(utilities.CanteraTest):
         self.assertEqual(self.sim.transport_model, 'Mix')
 
     def test_mixture_averaged(self, saveReference=False):
-        referenceFile = '../data/DiffusionFlameTest-h2-mix.csv'
+        referenceFile = utilities.test_data('DiffusionFlameTest-h2-mix.csv')
         self.create_sim(p=ct.one_atm)
 
         nPoints = len(self.sim.grid)
@@ -534,7 +534,7 @@ class TestDiffusionFlame(utilities.CanteraTest):
             self.assertFalse(bad, bad)
 
     def test_auto(self, saveReference=False):
-        referenceFile = '../data/DiffusionFlameTest-h2-auto.csv'
+        referenceFile = utilities.test_data('DiffusionFlameTest-h2-auto.csv')
         self.create_sim(p=ct.one_atm, mdot_fuel=2, mdot_ox=3)
 
         nPoints = []
@@ -599,7 +599,7 @@ class TestDiffusionFlame(utilities.CanteraTest):
         self.run_extinction(mdot_fuel=0.2, mdot_ox=2.0, T_ox=600, width=0.2, P=0.05)
 
     def test_mixture_averaged_rad(self, saveReference=False):
-        referenceFile = '../data/DiffusionFlameTest-h2-mix-rad.csv'
+        referenceFile = utilities.test_data('DiffusionFlameTest-h2-mix-rad.csv')
         self.create_sim(p=ct.one_atm)
 
         nPoints = len(self.sim.grid)
@@ -664,7 +664,7 @@ class TestDiffusionFlame(utilities.CanteraTest):
 
 
 class TestCounterflowPremixedFlame(utilities.CanteraTest):
-    referenceFile = '../data/CounterflowPremixedFlame-h2-mix.csv'
+    referenceFile = utilities.test_data('CounterflowPremixedFlame-h2-mix.csv')
     # Note: to re-create the reference file:
     # (1) set PYTHONPATH to build/python2 or build/python3.
     # (2) Start Python in the test/work directory and run:
@@ -769,9 +769,8 @@ class TestBurnerFlame(utilities.CanteraTest):
 class TestImpingingJet(utilities.CanteraTest):
     def run_reacting_surface(self, xch4, tsurf, mdot, width):
         # Simplified version of the example 'catalytic_combustion.py'
-        gas = ct.Solution('../data/ptcombust-simple.cti', 'gas')
-        surf_phase = ct.Interface('../data/ptcombust-simple.cti',
-                                  'Pt_surf', [gas])
+        gas = ct.Solution('ptcombust-simple.cti', 'gas')
+        surf_phase = ct.Interface('ptcombust-simple.cti', 'Pt_surf', [gas])
 
         tinlet = 300.0  # inlet temperature
         comp = {'CH4': xch4, 'O2':0.21, 'N2':0.79}

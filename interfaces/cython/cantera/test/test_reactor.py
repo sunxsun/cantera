@@ -917,7 +917,7 @@ class TestSurfaceKinetics(utilities.CanteraTest):
         surf1.coverages = C
         self.assertArrayNear(surf1.coverages, C)
         data = []
-        test_file = 'test_coverages_regression1.csv'
+        test_file = 'test_work/test_coverages_regression1.csv'
         reference_file = utilities.test_data('WallKinetics-coverages-regression1.csv')
         data = []
         for t in np.linspace(1e-6, 1e-3):
@@ -942,7 +942,7 @@ class TestSurfaceKinetics(utilities.CanteraTest):
         surf.coverages = C
         self.assertArrayNear(surf.coverages, C)
         data = []
-        test_file = 'test_coverages_regression2.csv'
+        test_file = 'test_work/test_coverages_regression2.csv'
         reference_file = utilities.test_data('WallKinetics-coverages-regression2.csv')
         data = []
         for t in np.linspace(1e-6, 1e-3):

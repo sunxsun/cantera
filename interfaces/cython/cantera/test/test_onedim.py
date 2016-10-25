@@ -309,7 +309,7 @@ class TestFreeFlame(utilities.CanteraTest):
 
         self.create_sim(p, Tin, reactants)
         self.solve_fixed_T()
-        filename = 'onedim-fixed-T{0}.xml'.format(utilities.python_version)
+        filename = 'test_work/onedim-fixed-T{0}.xml'.format(utilities.python_version)
         if os.path.exists(filename):
             os.remove(filename)
 
@@ -370,7 +370,7 @@ class TestFreeFlame(utilities.CanteraTest):
         p = 2 * ct.one_atm
         Tin = 400
 
-        filename = 'onedim-add-species{0}.xml'.format(utilities.python_version)
+        filename = 'test_work/onedim-add-species{0}.xml'.format(utilities.python_version)
         if os.path.exists(filename):
             os.remove(filename)
 
@@ -398,7 +398,7 @@ class TestFreeFlame(utilities.CanteraTest):
         p = 2 * ct.one_atm
         Tin = 400
 
-        filename = 'onedim-add-species{0}.xml'.format(utilities.python_version)
+        filename = 'test_work/onedim-add-species{0}.xml'.format(utilities.python_version)
         if os.path.exists(filename):
             os.remove(filename)
 
@@ -422,7 +422,7 @@ class TestFreeFlame(utilities.CanteraTest):
             self.assertArrayNear(Y1[k1], Y2[k2])
 
     def test_write_csv(self):
-        filename = 'onedim-write_csv{0}.csv'.format(utilities.python_version)
+        filename = 'test_work/onedim-write_csv{0}.csv'.format(utilities.python_version)
         if os.path.exists(filename):
             os.remove(filename)
 

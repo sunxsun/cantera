@@ -11,7 +11,7 @@ def convertMech(inputFile, outName=None, **kwargs):
     if os.path.exists(outName):
         os.remove(outName)
     parser = ck2cti.Parser()
-    parser.convertMech(inputFile, outName=outName, **kwargs)
+    parser.convertMech(inputFile, outName='test_work/' + outName, **kwargs)
 
 
 class chemkinConverterTest(utilities.CanteraTest):
@@ -344,7 +344,7 @@ class chemkinConverterTest(utilities.CanteraTest):
     def test_reaction_comments1(self):
         convertMech(utilities.test_data('pdep-test.inp'),
                     outName='pdep_test.cti', quiet=True)
-        with open('pdep_test.cti') as f:
+        with open('test_work/pdep_test.cti') as f:
             text = f.read()
         self.assertIn('Generic mechanism header', text)
         self.assertIn('Single PLOG reaction', text)
@@ -354,7 +354,7 @@ class chemkinConverterTest(utilities.CanteraTest):
         convertMech(utilities.test_data('explicit-third-bodies.inp'),
                     thermoFile=utilities.test_data('dummy-thermo.dat'),
                     outName='explicit_third_bodies.cti', quiet=True)
-        with open('explicit_third_bodies.cti') as f:
+        with open('test_work/explicit_third_bodies.cti') as f:
             text = f.read()
         self.assertIn('An end of line comment', text)
         self.assertIn('A comment after the last reaction', text)

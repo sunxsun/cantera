@@ -22,5 +22,21 @@ before_script: |
   fi
   rm -f cantera.conf
 script:
-  - scons build -j2 VERBOSE=y python_package=full python3_package=n blas_lapack_libs=lapack,blas optimize=n
+  - scons build -j2 VERBOSE=y python_package=full python3_package=n blas_lapack_libs=lapack,blas optimize=n coverage=y
   - scons test
+after_success: |
+  if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
+      gcov -o build/src/base src/base/*.cpp
+      gcov -o build/src/equil src/equil/*.cpp
+      gcov -o build/src/kinetics src/kinetics/*.cpp
+      gcov -o build/src/numerics src/numerics/*.cpp
+      gcov -o build/src/tpx src/tpx/*.cpp
+      gcov -o build/src/zeroD src/zeroD/*.cpp
+      gcov -o build/src/clib src/clib/*.cpp
+      gcov -o build/src/fortran src/fortran/*.cpp
+      gcov -o build/src/oneD src/oneD/*.cpp
+      gcov -o build/src/python src/python/*.cpp
+      gcov -o build/src/thermo src/thermo/*.cpp
+      gcov -o build/src/transport src/transport/*.cpp
+      bash <(curl -s https://codecov.io/bash)
+  fi

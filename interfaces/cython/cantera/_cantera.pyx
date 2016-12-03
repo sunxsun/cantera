@@ -1,4 +1,5 @@
 #cython: embedsignature=True
+#cython: linetrace=True
 #distutils: language = c++
 
 import numpy as np

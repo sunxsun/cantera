@@ -740,7 +740,8 @@ else:
 
 if env['coverage']:
     if  'gcc' in env.subst('$CC'):
-        env.Append(CCFLAGS=['-fprofile-arcs', '-ftest-coverage'])
+        env.Append(CCFLAGS=['-fprofile-arcs', '-ftest-coverage',
+            '-fno-inline', '-fno-inline-small-functions', '-fno-default-inline'])
         env.Append(LINKFLAGS=['-fprofile-arcs', '-ftest-coverage'])
 
     else:

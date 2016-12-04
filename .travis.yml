@@ -25,7 +25,7 @@ script:
   - scons build -j2 VERBOSE=y python_package=full python3_package=n blas_lapack_libs=lapack,blas optimize=n coverage=y
   - scons test
 after_success: |
-  if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
+  if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
       gcov -o build/src/base src/base/*.cpp
       gcov -o build/src/equil src/equil/*.cpp
       gcov -o build/src/kinetics src/kinetics/*.cpp

@@ -16,12 +16,10 @@
 #include <sstream>
 #include <functional>
 
-#ifndef _WIN32
-#include <unistd.h>
-#endif
-
 #ifdef _WIN32
 #include <windows.h>
+#else
+#include <unistd.h>
 #endif
 
 using namespace std;
@@ -84,7 +82,7 @@ void ct2ctml(const char* file, const int debug)
 static std::string call_ctml_writer(const std::string& text, bool isfile)
 {
     std::string file, arg;
-    bool temp_file_created=false;
+    bool temp_file_created = false;
     std::string temp_cti_file_name = std::tmpnam(nullptr);
     
     if (isfile) {
@@ -219,12 +217,10 @@ static std::string call_ctml_writer(const std::string& text, bool isfile)
     }
 
     if (temp_file_created) {
-        //Means a temp file was created and has to be removed
+        // Means a temp file was created and has to be removed
         bool temp_file_del_status = std::remove(temp_cti_file_name.c_str());
         if (temp_file_del_status) {
-            std::string fileWarning = "WARNING: Error removing tmp file ";
-            fileWarning += temp_cti_file_name;
-            writelog(fileWarning);
+            writelog("WARNING: Error removing tmp file {}\n", temp_cti_file_name);
         }
     }
     

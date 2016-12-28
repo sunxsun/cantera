@@ -104,11 +104,10 @@ static std::string call_ctml_writer(const std::string& text, bool isfile)
     // This is OS Specific. *nix systems have the sysconf() function that tells 
     // us the largest argument we can pass. Since such a function does not exist
     // for Windows, we set a safe limit of 32 kB
+
 #ifdef _WIN32
     int max_argv_size = 32768;
-#endif
-
-#ifndef _WIN32
+#else
     int max_argv_size = sysconf(_SC_ARG_MAX);
 #endif
 
@@ -120,11 +119,11 @@ static std::string call_ctml_writer(const std::string& text, bool isfile)
 
         ofstream temp_cti_file(temp_cti_file_name);
             
-        if(temp_cti_file) {
+        if (temp_cti_file) {
             temp_cti_file << text;
             file = temp_cti_file_name;
             arg = "r'" + file + "'";
-            temp_file_created=true;
+            temp_file_created = true;
         } else {
             // If we are here, then a temp file could not be created
             throw CanteraError("call_ctml_writer", "Very long source argument"

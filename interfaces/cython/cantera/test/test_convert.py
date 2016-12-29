@@ -466,12 +466,12 @@ class CtmlConverterTest(utilities.CanteraTest):
         Solution object. This should result in a temp file creation in most OS's
         """
         
-        convertMech(pjoin(self.test_data_dir, 'pdep-test.inp'),
-                    outName=pjoin(self.test_work_dir, 'pdep_test.cti'), quiet=True)
+#        convertMech(pjoin(self.test_data_dir, 'pdep-test.inp'),
+#                    outName=pjoin(self.test_work_dir, 'pdep_test.cti'), quiet=True)
 
-        gas = ct.Solution(pjoin(self.test_work_dir, 'pdep_test.cti'))
+        gas = ct.Solution(pjoin(self.test_data_dir, 'pdep-test.cti'))
 
-        with open(pjoin(self.test_work_dir, 'pdep_test.cti'),'r') as f:
+        with open(pjoin(self.test_data_dir, 'pdep-test.cti'),'r') as f:
             data = f.read()
         data_size_2048kB = data + ' '*2048*1024
         gas2 = ct.Solution(source=data_size_2048kB)
@@ -484,12 +484,12 @@ class CtmlConverterTest(utilities.CanteraTest):
         object. This should not result in a temp file creation in most OS's
         """
         
-        convertMech(pjoin(self.test_data_dir, 'pdep-test.inp'),
-                    outName=pjoin(self.test_work_dir, 'pdep_test.cti'), quiet=True)
+#        convertMech(pjoin(self.test_data_dir, 'pdep-test.inp'),
+#                    outName=pjoin(self.test_work_dir, 'pdep_test.cti'), quiet=True)
 
-        gas = ct.Solution(pjoin(self.test_work_dir, 'pdep_test.cti'))
+        gas = ct.Solution(pjoin(self.test_data_dir, 'pdep-test.cti'))
 
-        with open(pjoin(self.test_work_dir, 'pdep_test.cti'),'r') as f:
+        with open(pjoin(self.test_data_dir, 'pdep-test.cti'),'r') as f:
             data = f.read()
         data_size_32kB = data + ' '*20000
         gas2 = ct.Solution(source=data_size_32kB)
